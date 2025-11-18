@@ -1,0 +1,173 @@
+---
+title: Configure Dojo
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Dojo is a powerful API based backend server which can be configured in many different ways. For simplicity, easy of usability, and ease of updating Dojo in the future, this step will walk you through the most simple method of configuring Dojo which will automatically setup and install all of the following:
+
+- Dojo (default)
+- Bitcoin Core (default)
+- BTC-RPC Block Explorer (default)
+- Fulcrum Indexer
+- Fulcrum Electrum Server Tor hidden service
+- Fulcrum Electrum Server exposed over local network
+
+## Admin credentials
+The following steps will require you to generate secure admin "usernames", "passwords", and "keys".
+
+These admin credentials are:
+
+- `BITCOIND_RPC_USER`
+- `BITCOIND_RPC_PASSWORD`
+- `MYSQL_ROOT_PASSWORD`
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`
+- `NODE_API_KEY`
+- `NODE_ADMIN_KEY`
+- `NODE_JWT_SECRET`
+
+Each of these admin credentials must be:
+
+- Unique
+- Alphanumeric (made up of only numbers, uppercase letters, and lowercase letters)
+- 40 characters long for security
+
+### Generate admin credentials
+Using a password manager (like Bitwarden or KeePassXC), first generate and save an alphanumeric string for each of the admin credentials above.
+
+___
+
+Continue copying and pasting the following commands in the terminal, then press `ENTER`.
+
+## Configure bitcoind
+<Steps>
+1. Navigate to the configuration files directory
+    ```sh
+    cd ~/dojo-app/docker/my-dojo/conf/
+    ```
+2. Open the "bitcoind" configuration in the editor
+    ```sh
+    nano docker-bitcoind.conf.tpl
+    ```
+
+    Top tips for editing configuration files:
+    - Do not use your mouse
+    - Use your keyboard `UP`, `DOWN`, `LEFT`, `RIGHT`, `HOME`, and `END` buttons to navigate
+    - Use your keyboard `BACKSPACE` button to delete text
+    - Paste using `ctrl + shift + v`
+    - If you make a mistake, go:
+    - `ctrl + x`
+    - then press `n`
+    - then press `ENTER`
+    - then enter the last "nano" command into the terminal to try again
+3. Edit the "bitcoind" configuration
+
+    Paste in your admin credentials for:
+    ```
+    BITCOIND_RPC_USER=PasteCredentialHere
+    BITCOIND_RPC_PASSWORD=PasteCredentialHere
+    ```
+4. Set the following
+
+    ```
+    BITCOIND_DB_CACHE=2048
+    ```
+5. Save and exit
+    - `ctrl + x`
+    - then press `y`
+    - then press `ENTER`
+</Steps>
+
+## Configure MySQL
+
+<Steps>
+1. Open the "mysql" configuration in the editor
+    ```sh
+    nano docker-mysql.conf.tpl
+    ```
+2. Edit the "mysql" configuration
+
+    Paste in your admin credentials for:
+
+    ```
+    MYSQL_ROOT_PASSWORD=PasteCredentialHere
+    MYSQL_USER=PasteCredentialHere
+    MYSQL_PASSWORD=PasteCredentialHere
+    ```
+3. Save and exit
+    - `ctrl + x`
+    - then press `y`
+    - then press `ENTER`
+</Steps>
+
+## Configure Indexer
+<Steps>
+1. Open the "indexer" configuration in the editor
+    ```sh
+    nano docker-indexer.conf.tpl
+    ```
+2. Edit the "indexer" configuration
+
+    Set the following:
+
+    ```
+    INDEXER_INSTALL=on
+    INDEXER_TYPE=fulcrum
+    INDEXER_BATCH_SUPPORT=active
+    INDEXER_EXTERNAL=on
+    ```
+    If your Dojo node is running on its own separate machine within your local network, set the following to the IP address of the machine which Dojo is running on:
+
+    ```
+    INDEXER_EXTERNAL_IP=TypeIPaddressHere
+    ```
+    for example: ```INDEXER_EXTERNAL_IP=192.168.4.117```
+
+
+    If your Dojo node is running on your same local machine (i.e. you will be running Dojo on your everyday Ubuntu computer), leave this field set to the following default setting:
+
+    ```
+    INDEXER_EXTERNAL_IP=127.0.0.1
+    ```
+3. Save and exit
+    - `ctrl + x`
+    - then press `y`
+    - then press `ENTER`
+</Steps>
+
+## Configure Node.js
+<Steps>
+1. Open the "node" configuration in the editor
+    ```sh
+    nano docker-node.conf.tpl
+    ```
+
+2. Edit the "node" configuration
+
+    Paste in your admin credentials for:
+
+    ```
+    NODE_API_KEY=PasteCredentialHere
+    NODE_ADMIN_KEY=PasteCredentialHere
+    NODE_JWT_SECRET=PasteCredentialHere
+    ```
+    Set the following:
+
+    ```
+    NODE_ACTIVE_INDEXER=local_indexer
+    ```
+3. Save and exit
+    - `ctrl + x`
+    - then press `y`
+    - then press `ENTER`
+
+4. Clean up
+
+    Once you have finished this step of the guide, the only credential which you need to save (either in your password manager, or written down on a notepad) is the ```NODE_ADMIN_KEY```.
+
+    The ```NODE_ADMIN_KEY``` is what you will need to login and access your Dojo Maintenance Tool in the future.
+</Steps>
+___
+
+All other credentials which you generated earlier and pasted into the configuration files no longer need to be saved in your password manager or written down in a notepad. You can now delete/destroy them. You will not need these on a daily basis, and it is always possible to retrieve them from your Dojo in the future should you require them.

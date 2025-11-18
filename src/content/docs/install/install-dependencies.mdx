@@ -1,0 +1,71 @@
+---
+title: Install dependencies
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+All commands are to be copy and pasted into the terminal, then press `ENTER`.
+
+When installing these dependencies, keep an eye on the screen. They will require you to type yes or y then press ENTER to continue with the install.
+
+## Install dependencies and Torsocks
+
+<Steps>
+1. Ensure you are in the home directory
+
+    ```sh
+    cd ~/
+    ```
+2. Fetch latest updates
+
+    ```sh
+    sudo apt-get update
+    ```
+
+3. Install dependencies
+
+    ```sh
+    sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common unzip
+    ```
+
+4. Install Torsocks
+
+    ```sh
+    sudo apt install torsocks
+    ```
+</Steps>
+
+
+## Install Docker & Docker Compose
+
+Note: if you wish to follow the official installation guide for Docker and Docker Compose [see here](https://docs.docker.com/engine/install/ubuntu/), otherwise continue with these more simple and easy to follow steps.
+
+<Steps>
+1. Add Docker's official GPG key
+    ```sh
+    sudo apt-get update
+    sudo apt-get install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+    ```
+
+2. Add the repository to Apt sources
+    ```sh
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    ```
+
+3. Install latest version of Docker and Docker Compose
+    ```sh
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    ```
+
+4. Add your current user account to the docker group
+    ```sh
+    sudo usermod -aG docker $USER
+    ```
+</Steps>

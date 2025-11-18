@@ -1,0 +1,16 @@
+---
+title: General usage practice
+---
+
+Your Dojo is a highly performant but sensitive server, and it should be treated as such. It is simultaneously managing multiple services and reading/writing to multiple databases. You should therefore follow best practices to ensure maximum uptime and health.
+
+### Never remove power from your wallet server unexpectedly
+This can cause database corruption. Always STOP Dojo first to prevent this from occurring.
+
+### Stop all processes before updating Dojo
+Before updating to the latest version of Dojo, ensure you first STOP Dojo to prevent database corruption.
+
+### Considerations for sharing credentials with third-parties
+It is always best practice to run your own personal wallet server for you to connect your own bitcoin wallet/s to. There however may be some instances where you choose to share certain credentials with others (for example your Dojo pairing credentials) to allow them to make use of your wallet server. You should therefore make best efforts to understand the privacy implications of doing so, both for you running the server, and for the third-party individual who has connected their wallet to your the server.
+
+You should not give any third-party your wallet server admin credentials which would allow them server access via the command line. Only you should manage, maintain, and update your server.

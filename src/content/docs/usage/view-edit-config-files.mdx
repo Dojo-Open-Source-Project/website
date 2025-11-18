@@ -1,0 +1,101 @@
+---
+title: Viewing and editing configuration files
+---
+
+After you have installed Dojo, you may have a need to view your existing configuration files (e.g. if you want to copy one of your admin credentials), or you may want to edit a configuration file to configure your Dojo for a more advanced setup.
+
+This guide does not provide details of how to go about setting configurations files for specific advanced Dojo setups, only how you would go about editing/saving configuration files, then how to apply the changes.
+
+In the terminal of your Dojo, copy and paste the following commands, then press `ENTER`.
+
+## How to view configuration files
+### Navigate to the configuration files directory
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+```
+This is the directory where all Dojo configuration (conf) files are stored. All the following commands are to be run in this directory.
+
+### View bitcoind conf
+```sh
+cat docker-bitcoind.conf
+```
+### View common conf
+```sh
+cat docker-common.conf
+```
+### View explorer conf
+```sh
+cat docker-explorer.conf
+```
+### View indexer conf
+```sh
+cat docker-indexer.conf
+```
+### View mysql conf
+```sh
+cat docker-mysql.conf
+```
+### View node conf
+```sh
+cat docker-node.conf
+```
+### View tor conf
+```sh
+cat docker-tor.conf
+```
+
+## How to edit configuration files
+**Note**: This guide only applies if you have already installed Dojo.
+
+### Navigate to the configuration files directory
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+```
+This is the directory where all Dojo configuration (conf) files are stored.
+
+### Open the configuration file in the editor
+Run the following command, substituting in the name of the configuration file you wish to edit:
+
+```sh
+nano docker-ConfigurationFileNameHere.conf
+```
+For example:
+
+```sh
+nano docker-indexer.conf
+```
+
+### Make your desired edits
+Continue to make edits to the configuration file which you hare opened in the editor.
+
+#### Top tips for editing configuration files
+- Do not use your mouse
+- Use your keyboard `UP`, `DOWN`, `LEFT`, `RIGHT`, `HOME`, and `END` buttons to navigate
+- Use your keyboard BACKSPACE button to delete text
+- Paste using `ctrl + shift + v`
+- If you make a mistake, go:
+    - `ctrl + x`
+    - then press `n`
+    - then press `ENTER`
+    - then enter the "nano" command into the terminal to try again
+
+### Save and exit the configuration file
+Type the following into your keyboard:
+
+- `ctrl + x`
+- then press `y`
+- then press `ENTER`
+¨
+### Navigate to the Dojo script directory
+```sh
+cd ~/dojo-app/docker/my-dojo
+```
+### Run "upgrade" command to apply changes
+```sh
+./dojo.sh upgrade
+```
+**Note**: any changes made to configuration files will not be applied until you run this upgrade command.
+
+Once you see a constant stream of "node.js", "bitcoind", and "fulcrum" logs, your configuration changes have successfully been applied.
+
+To exit the log screen, go: `ctrl + c`

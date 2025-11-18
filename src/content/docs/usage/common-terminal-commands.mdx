@@ -1,0 +1,54 @@
+---
+title: Common terminal commands
+---
+
+Below are the most common commands you are likely to use when interacting with your Dojo via the terminal.
+
+Copy and paste the following commands in the terminal, then press `ENTER`.
+
+## Dojo script directory
+Navigate to the Dojo script directory:
+```sh
+cd ~/dojo-app/docker/my-dojo
+```
+All commands which start `./dojo.sh` are to be run in this directory.
+
+## Dojo commands
+The following commands are to be run in the Dojo script directory.
+
+### Restart Dojo
+```sh
+./dojo.sh restart
+```
+### Stop Dojo
+```sh
+./dojo.sh stop
+```
+**Note**: ensure you stop Dojo before: removing power from machine, or updating Dojo.
+
+### Start Dojo
+```sh
+./dojo.sh start
+```
+### Show Dojo version
+```sh
+./dojo.sh version
+```
+### Uninstall Dojo
+```sh
+./dojo.sh uninstall
+```
+**Warning**: this command will erase all Dojo data.
+
+### Show list of all possible Dojo commands
+```sh
+./dojo.sh help
+```
+## Docker commands
+The following commands can be run in any directory.
+
+### Restart Tor
+```sh
+docker restart tor
+```
+This will restart the Tor hidden service running on your Dojo, and may help if your Dojo becomes unreachable.

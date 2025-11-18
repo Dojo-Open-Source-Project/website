@@ -1,0 +1,37 @@
+---
+title: Install Dojo
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Continue copying and pasting the following commands in the terminal, then press `ENTER`.
+
+<Steps>
+1. Check Docker is working
+    ```sh
+    docker run hello-world
+    ```
+    Expected result:
+
+    ```
+    "Hello from Docker!
+    This message shows that your installation appears to be working correctly..."
+    Note: if you do not see this expected result, reboot your computer and try again.
+    ```
+
+2. Navigate to the Dojo script directory
+    ```sh
+    cd ~/dojo-app/docker/my-dojo
+    ```
+3. Install Dojo
+    ```sh
+    ./dojo.sh install
+    ```
+
+    Once you see a constant stream of "node.js", "bitcoind", and "fulcrum" logs, Dojo has installed successfully and will start to download and index the blockchain.
+
+</Steps>
+
+To exit the log screen, use ```ctrl + c```
+
+The time period for your Dojo to complete the Initial Block Download (IBD) and indexing of the Fulcrum Server will depend on your network peers, the hardware you are using and the bandwidth speeds. You may be waiting from anywhere between 2 and 7 days for this to complete.

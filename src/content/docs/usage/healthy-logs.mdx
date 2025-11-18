@@ -1,0 +1,93 @@
+---
+title: Healthy logs
+---
+
+import ImageZoom from 'starlight-image-zoom/components/ImageZoom.astro'
+
+<ImageZoom />
+
+After your wallet server is fully synced, you may choose to check on the logs from time to time to ensure everything looks healthy. If you are experiencing issues with your Dojo, by checking the logs you may be able to identify the fault and look to fix it.
+
+## How to obtain logs
+In the terminal of your Dojo, copy and paste the following commands, then press `ENTER`.
+
+### Navigate to the Dojo script directory
+```sh
+cd ~/dojo-app/docker/my-dojo
+```
+All commands which start `./dojo.sh` are to be run in this directory.
+
+### Show all logs
+```sh
+./dojo.sh logs
+```
+Press `ctrl + c` to exit back to the terminal.
+
+### Show Bitcoind logs
+```sh
+./dojo.sh logs bitcoind
+```
+Press `ctrl + c` to exit back to the terminal.
+
+### Show Tor logs
+```sh
+./dojo.sh logs tor
+```
+Press `ctrl + c` to exit back to the terminal.
+
+### Show Fulcrum logs
+```sh
+./dojo.sh logs fulcrum
+```
+Press `ctrl + c` to exit back to the terminal.
+
+### Show NodeJS logs
+**Warning**: these logs can contain sensitive information pertaining to wallets connected to your wallet server. As such, consideration should be made prior to sharing these with any third-party.
+
+```sh
+./dojo.sh logs node
+```
+Press `ctrl + c` to exit back to the terminal.
+
+### Show Dojo DB logs
+**Warning**: the "user" field contained in these logs, though not a security risk, may be a privacy risk. As such, consideration should be made prior to sharing these with any third-party.
+
+```sh
+./dojo.sh logs db
+```
+Press `ctrl + c` to exit back to the terminal.
+
+### Show Explorer logs
+```sh
+./dojo.sh logs explorer
+```
+Press `ctrl + c` to exit back to the terminal.
+
+## Examples of healthy logs
+The following healthy logs have been captured after Dojo has completed its initial sync.
+
+### Bitcoind
+
+![Bitcoind logs](../../../assets/docs/usage/logs/Bitcoind_Healthy_Logs.png)
+
+### Tor
+
+![Tor logs](../../../assets/docs/usage/logs/Tor_Healthy_Logs.png)
+
+### Fulcrum
+
+![Fulcrum logs](../../../assets/docs/usage/logs/Fulcrum_Healthy_Logs.png)
+
+### NodeJS
+**Warning**: these logs can contain sensitive information pertaining to wallets connected to your Dojo. As such, consideration should be made prior to sharing these with any third-party.
+
+![Node.js logs](../../../assets/docs/usage/logs/NodeJS_Healthy_Logs.png)
+
+### Dojo DB
+**Warning**: the "user" field contained in these logs, though not a security risk, may be a privacy risk. As such, consideration should be made prior to sharing these with any third-party.
+
+![DB logs](../../../assets/docs/usage/logs/DB_Healthy_Logs.png)
+
+### Explorer
+
+![Explorer logs](../../../assets/docs/usage/logs/Explorer_Healthy_Logs.png)

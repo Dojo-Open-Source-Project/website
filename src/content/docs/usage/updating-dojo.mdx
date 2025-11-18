@@ -1,0 +1,151 @@
+---
+title: Updating Dojo
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import ImageZoom from 'starlight-image-zoom/components/ImageZoom.astro'
+
+<ImageZoom />
+
+When a new version of Dojo is released, follow these steps to download, verify, then update to the latest version.
+
+If you are unsure what Dojo version you are on, login to your DMT and displayed at the top will be the current version.
+
+___
+
+**The following guide will update you to the latest Dojo version**: `v1.27.0`
+
+All commands are to be copy and pasted into the terminal of your Dojo, then press `ENTER`.
+
+## Upgrade system packages (optional)
+Though this step is optional, it is recommended to first upgrade your system's packages and dependencies to the latest versions. This helps to keep your system secure, and additionally can help prevent errors when updating Dojo to the latest version.
+
+<Steps>
+1. Fetch latest package versions
+    ```sh
+    sudo apt-get update
+    ```
+2. Upgrade packages to latest version
+    ```sh
+    sudo apt-get upgrade
+    ```
+3. Navigate to the Dojo script directory
+    ```sh
+    cd ~/dojo-app/docker/my-dojo
+    ```
+4. Stop Dojo
+    ```sh
+    ./dojo.sh stop
+    ```
+5. Reboot your Linux system
+    ```sh
+    sudo reboot
+    ```
+</Steps>
+After your system has rebooted, log back in using your Dojo user credentials then continue to the next step in this guide.
+
+## Download required files
+
+<Steps>
+1. Download developer's PGP key over Tor and import locally
+    ```sh
+    torsocks wget http://zkaan2xfbuxia2wpf7ofnkbz6r5zdbbvxbunvp5g2iebopbfc4iqmbad.onion/vks/v1/by-fingerprint/E53AD419B242822F19E23C6D3033D463D6E544F6 && gpg --import E53AD419B242822F19E23C6D3033D463D6E544F6
+    ```
+    Note: it is safe to run this command if you have already previously imported this public key when first installing Dojo.
+
+2. Navigate to the Dojo script directory
+    ```sh
+    cd ~/dojo-app/docker/my-dojo
+    ```
+3. Stop Dojo
+    ```sh
+    ./dojo.sh stop
+    ```
+4. Navigate to home directory
+    ```sh
+    cd ~/
+    ```
+5. Download over Tor the latest version of Dojo from GitHub
+    ```sh
+    torsocks wget -O samourai-dojo-1.27.0.zip https://github.com/Dojo-Open-Source-Project/samourai-dojo/archive/refs/tags/v1.27.0.zip
+    ```
+6. Download over Tor the Dojo fingerprints file and PGP signed fingerprints file from GitHub
+    ```sh
+    torsocks wget https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v1.27.0/samourai-dojo-1.27.0-fingerprints.txt && torsocks wget https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v1.27.0/samourai-dojo-1.27.0-fingerprints.txt.sig
+    ```
+</Steps>
+
+### Verify the PGP signed fingerprints file:
+```sh
+gpg --verify samourai-dojo-1.27.0-fingerprints.txt.sig
+```
+
+### ✅ Successful result:
+Successful verification is confirmed if the following is displayed on screen:
+```
+gpg: Signature made [date + time]
+gpg: using EDDSA key E53AD419B242822F19E23C6D3033D463D6E544F6
+gpg: Good signature from "dojocoder@pm.me" <dojocoder@pm.me> [unknown]
+You can safely ignore the following if displayed:
+
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg: There is no indication that the signature belongs to the owner.
+You may continue to the next step in this guide.
+```
+
+### ❌ Unsuccessful result:
+If you observe a different result to the above, **stop immediately**. Do not continue following this guide. Do not update Dojo. Seek advice from a community member.
+
+## Verify SHA256 fingerprints
+
+Verify the SHA256 fingerprints of the downloaded file:
+```sh
+sha256sum --check samourai-dojo-1.27.0-fingerprints.txt --ignore-missing
+```
+
+### ✅ Successful result
+Successful verification is confirmed if the following is displayed on screen:
+
+```
+samourai-dojo-1.27.0.zip: OK
+```
+
+### ❌ Unsuccessful result
+
+Unsuccessful verification might be displayed on screen:
+
+```
+samourai-dojo-1.27.0.zip: FAILED
+sha256sum: WARNING: 1 computed checksum did NOT match
+sha256sum: samourai-dojo-1.27.0-fingerprints.txt: no file was verified
+```
+
+If the hashes do not match, **stop immediately**. Do not continue following this guide. Do not install Dojo. Seek advice from a community member.
+
+## Unpack files and upgrade Dojo
+
+<Steps>
+1. Unzip the downloaded file
+    ```sh
+    unzip samourai-dojo-1.27.0.zip -d .
+    ```
+2. Copy the file contents into the Dojo directory
+    ```sh
+    cp -a samourai-dojo-1.27.0/. dojo-app/
+    ```
+3. Remove the files which are no longer required
+    ```sh
+    rm -r samourai-dojo-1.27.0 && rm samourai-dojo-1.27.0.zip && rm samourai-dojo-1.27.0-fingerprints.txt && rm samourai-dojo-1.27.0-fingerprints.txt.sig && rm E53AD419B242822F19E23C6D3033D463D6E544F6
+    ```
+4. Navigate to the Dojo script directory
+    ```sh
+    cd ~/dojo-app/docker/my-dojo
+    ```
+5. Update Dojo to the latest version
+    ```sh
+    ./dojo.sh upgrade -y
+    ```
+</Steps>
+Once you see a constant stream of "node.js", "bitcoind", and "fulcrum" logs, Dojo has updated successfully.
+
+To exit the log screen, go: `ctrl + c`

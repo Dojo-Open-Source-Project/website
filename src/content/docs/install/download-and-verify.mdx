@@ -1,0 +1,107 @@
+---
+title: Download and verify Dojo
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Continue copying and pasting the following commands in the terminal, then press `ENTER`.
+
+## Download files
+<Steps>
+1. Download developer's PGP key over Tor and import locally
+    ```sh
+    torsocks wget http://zkaan2xfbuxia2wpf7ofnkbz6r5zdbbvxbunvp5g2iebopbfc4iqmbad.onion/vks/v1/by-fingerprint/E53AD419B242822F19E23C6D3033D463D6E544F6 && gpg --import E53AD419B242822F19E23C6D3033D463D6E544F6
+    ```
+
+2. Download the latest version of Dojo from GitHub over Tor
+    ```sh
+    torsocks wget -O samourai-dojo-1.27.0.zip https://github.com/Dojo-Open-Source-Project/samourai-dojo/archive/refs/tags/v1.27.0.zip
+    ```
+
+3. Download the Dojo fingerprints file and PGP signature file from GitHub over Tor
+    ```sh
+    torsocks wget https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v1.27.0/samourai-dojo-1.27.0-fingerprints.txt && torsocks wget https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v1.27.0/samourai-dojo-1.27.0-fingerprints.txt.sig
+    ```
+</Steps>
+
+## Verify PGP signature
+
+
+Verify the PGP signed fingerprints file:
+
+```sh
+  gpg --verify samourai-dojo-1.27.0-fingerprints.txt.sig
+```
+
+
+### ✅ Successful result
+
+Successful verification is confirmed if the following is displayed on screen:
+
+```
+gpg: Signature made [date + time]
+gpg: using EDDSA key E53AD419B242822F19E23C6D3033D463D6E544F6
+gpg: Good signature from "dojocoder@pm.me" <dojocoder@pm.me> [unknown]
+You can safely ignore the following if displayed:
+
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg: There is no indication that the signature belongs to the owner.
+You may continue to the next step in this guide.
+```
+
+### ❌ Unsuccessful result
+
+If you observe a different result to the above, **stop immediately**. Do not continue following this guide. Do not install Dojo. Seek advice from a community member.
+
+## Verify SHA256 fingerprints
+
+Verify the SHA256 fingerprints of the downloaded file:
+```sh
+sha256sum --check samourai-dojo-1.27.0-fingerprints.txt --ignore-missing
+```
+
+### ✅ Successful result
+Successful verification is confirmed if the following is displayed on screen:
+
+```
+samourai-dojo-1.27.0.zip: OK
+```
+
+### ❌ Unsuccessful result
+
+Unsuccessful verification might be displayed on screen:
+
+```
+samourai-dojo-1.27.0.zip: FAILED
+sha256sum: WARNING: 1 computed checksum did NOT match
+sha256sum: samourai-dojo-1.27.0-fingerprints.txt: no file was verified
+```
+
+If the hashes do not match, **stop immediately**. Do not continue following this guide. Do not install Dojo. Seek advice from a community member.
+
+## Unzip and prepare files
+
+Continue copying and pasting the following commands in the terminal, then press `ENTER`.
+
+<Steps>
+1. Unzip the downloaded file
+    ```sh
+    unzip samourai-dojo-1.27.0.zip -d .
+    ```
+
+2. Create a directory for your Wallet Server called "dojo-app"
+    ```sh
+    mkdir ~/dojo-app
+    ```
+
+3. Move the unzipped files to the new "dojo-app" directory
+    ```sh
+    mv ~/samourai-dojo-1.27.0/* ~/dojo-app/
+    ```
+
+4. Remove the files which are no longer required
+    ```sh
+    rm -r samourai-dojo-1.27.0 && rm samourai-dojo-1.27.0.zip && rm samourai-dojo-1.27.0-fingerprints.txt && rm samourai-dojo-1.27.0-fingerprints.txt.sig && rm E53AD419B242822F19E23C6D3033D463D6E544F6
+    ```
+</Steps>
+

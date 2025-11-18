@@ -1,0 +1,40 @@
+---
+title: Create segregated user
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+This step is optional but recommended for security.
+
+Continue copying and pasting the following commands in the terminal, then press `ENTER`.
+
+<Steps>
+1. Create a segregated user account called "dojo"
+    ```sh
+    sudo useradd -s /bin/bash -d /home/dojo -m -G sudo dojo
+    ```
+
+2. Generate a secure password
+
+    Ideally, using a password manager (like Bitwarden or KeePassXC), generate a long and secure password for the "dojo" user account. Be sure to save it, and/or write it down in a notepad if you are not setting up your Wallet Server on a remote machine (as you will need to login using these credentials in a later step).
+
+3. Set the password for the "dojo" user
+    ```sh
+    sudo passwd dojo
+    ```
+    Then paste / type the password generated in the previous step.
+
+4. Add your "dojo" user account to the Docker group
+    ```sh
+    sudo usermod -aG docker dojo
+    ```
+
+5. Reboot your machine to apply the changes
+    ```sh
+    sudo reboot
+    ```
+
+6. Log back into your machine using the "dojo" user
+
+    After your machine has rebooted, login using "dojo" as the user, and enter the password you generated earlier.
+</Steps>

@@ -1,7 +1,7 @@
 {
-	"name": "dojo-osp",
+	"name": "dojo-osp-website",
+	"private": true,
 	"type": "module",
-	"version": "0.0.1",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",

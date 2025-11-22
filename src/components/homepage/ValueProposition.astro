@@ -1,5 +1,7 @@
 ---
 import "../../styles/global.css";
+import Button from "./Button.astro";
+import Card from "./Card.astro";
 ---
 <!-- Value Proposition -->
 <section class="border-t border-white/5 bg-[#0e0e10]">
@@ -11,28 +13,28 @@ import "../../styles/global.css";
       </p>
     </div>
     <dl class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="rounded-xl border border-white/10 bg-white/5 p-5">
+      <Card>
         <dt class="text-sm font-semibold text-zinc-100">Hardened privacy defaults</dt>
         <dd class="mt-2 text-sm text-zinc-400">Minimize data exposure with a backend built for private use.
         </dd>
-      </div>
-      <div class="rounded-xl border border-white/10 bg-white/5 p-5">
+      </Card>
+      <Card>
         <dt class="text-sm font-semibold text-zinc-100">Own your infrastructure</dt>
         <dd class="mt-2 text-sm text-zinc-400">Self‑host at home or on your server. No third‑party trust required.</dd>
-      </div>
-      <div class="rounded-xl border border-white/10 bg-white/5 p-5">
+      </Card>
+      <Card>
         <dt class="text-sm font-semibold text-zinc-100">Simple to deploy</dt>
         <dd class="mt-2 text-sm text-zinc-400">Follow our step‑by‑step install guides and get running quickly.</dd>
-      </div>
-      <div class="rounded-xl border border-white/10 bg-white/5 p-5">
+      </Card>
+      <Card>
         <dt class="text-sm font-semibold text-zinc-100">Ecosystem ready</dt>
         <dd class="mt-2 text-sm text-zinc-400">Integrates with protocols and libs including BIP47, Auth47, and more.</dd>
-      </div>
+      </Card>
     </dl>
     <div class="mt-10 flex justify-center">
-      <a href="/docs/install/download-and-verify" class="inline-flex items-center rounded-md bg-[#ed3b26] px-5 py-3 text-sm font-semibold text-[#0b0b0c] ring-1 ring-inset ring-[#ed3b26]/60 hover:bg-[#f24b38]">
+      <Button href="/install/download-and-verify" type="primary">
         Start the install
-      </a>
+      </Button>
     </div>
   </div>
 </section>

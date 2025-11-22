@@ -1,0 +1,18 @@
+---
+import "../../styles/global.css";
+
+interface Props {
+	hoverable?: boolean;
+	class?: string;
+}
+
+const { hoverable } = Astro.props;
+
+const baseClasses = "rounded-xl border border-white/10 bg-white/5 p-5";
+const hoverClasses = hoverable ? "transition-colors hover:bg-white/10" : "";
+const additionalClasses = Astro.props.class;
+---
+
+<div class:list={[baseClasses, hoverClasses, additionalClasses]}>
+    <slot />
+</div>

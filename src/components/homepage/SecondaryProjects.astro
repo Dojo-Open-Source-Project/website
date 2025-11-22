@@ -1,5 +1,6 @@
 ---
 import "../../styles/global.css";
+import Card from "./Card.astro";
 ---
 <!-- Secondary Projects -->
 <section class="border-t border-white/5">
@@ -16,11 +17,11 @@ import "../../styles/global.css";
 
     <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <!-- BIP47 -->
-      <article class="group rounded-xl border border-white/10 bg-white/5 p-5 transition-colors hover:bg-white/8">
-        <header class="flex items-center justify-between">
+      <Card hoverable>
+        <div class="flex items-center justify-between">
           <h4 class="text-base font-semibold text-zinc-100">BIP47</h4>
           <span class="rounded-md bg-[#ed3b26]/15 px-2 py-0.5 text-[10px] font-semibold text-[#ff9a8f] ring-1 ring-inset ring-[#ed3b26]/30">Protocol</span>
-        </header>
+        </div>
         <p class="mt-2 line-clamp-3 text-sm text-zinc-400">Reusable payment codes for private address exchange.
         </p>
         <div class="mt-4 flex items-center gap-3">
@@ -31,14 +32,14 @@ import "../../styles/global.css";
             class="text-sm font-semibold text-[#ff9a8f] hover:text-[#ffb1a6]"
           >Repository search →</a>
         </div>
-      </article>
+      </Card>
 
       <!-- Auth47 -->
-      <article class="group rounded-xl border border-white/10 bg-white/5 p-5 transition-colors hover:bg-white/8">
-        <header class="flex items-center justify-between">
+      <Card hoverable>
+        <div class="flex items-center justify-between">
           <h4 class="text-base font-semibold text-zinc-100">Auth47</h4>
           <span class="rounded-md bg-[#ed3b26]/15 px-2 py-0.5 text-[10px] font-semibold text-[#ff9a8f] ring-1 ring-inset ring-[#ed3b26]/30">Protocol</span>
-        </header>
+        </div>
         <p class="mt-2 line-clamp-3 text-sm text-zinc-400">Authentication scheme leveraging BIP47 identities.
         </p>
         <div class="mt-4 flex items-center gap-3">
@@ -49,14 +50,14 @@ import "../../styles/global.css";
             class="text-sm font-semibold text-[#ff9a8f] hover:text-[#ffb1a6]"
           >Repository search →</a>
         </div>
-      </article>
+      </Card>
 
       <!-- Boltzmann -->
-      <article class="group rounded-xl border border-white/10 bg-white/5 p-5 transition-colors hover:bg-white/8">
-        <header class="flex items-center justify-between">
+      <Card hoverable>
+        <div class="flex items-center justify-between">
           <h4 class="text-base font-semibold text-zinc-100">Boltzmann</h4>
           <span class="rounded-md bg-[#ed3b26]/15 px-2 py-0.5 text-[10px] font-semibold text-[#ff9a8f] ring-1 ring-inset ring-[#ed3b26]/30">Library</span>
-        </header>
+        </div>
         <p class="mt-2 line-clamp-3 text-sm text-zinc-400">Privacy analysis tooling for transaction entropy.
         </p>
         <div class="mt-4 flex items-center gap-3">
@@ -67,14 +68,14 @@ import "../../styles/global.css";
             class="text-sm font-semibold text-[#ff9a8f] hover:text-[#ffb1a6]"
           >GitHub →</a>
         </div>
-      </article>
+      </Card>
 
       <!-- One Dollar Fee Estimator -->
-      <article class="group rounded-xl border border-white/10 bg-white/5 p-5 transition-colors hover:bg-white/8">
-        <header class="flex items-center justify-between">
+      <Card hoverable>
+        <div class="flex items-center justify-between">
           <h4 class="text-base font-semibold text-zinc-100">One‑Dollar‑Fee‑Estimator</h4>
           <span class="rounded-md bg-[#ed3b26]/15 px-2 py-0.5 text-[10px] font-semibold text-[#ff9a8f] ring-1 ring-inset ring-[#ed3b26]/30">Tool</span>
-        </header>
+        </div>
         <p class="mt-2 line-clamp-3 text-sm text-zinc-400">Heuristic fee estimator aligned with Samourai’s UX.
         </p>
         <div class="mt-4 flex items-center gap-3">
@@ -85,7 +86,7 @@ import "../../styles/global.css";
             class="text-sm font-semibold text-[#ff9a8f] hover:text-[#ffb1a6]"
           >GitHub →</a>
         </div>
-      </article>
+      </Card>
     </div>
   </div>
 </section>

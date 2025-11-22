@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import dojoLogo from "../../assets/dojo.svg";
+import Button from "./Button.astro";
 import "../../styles/global.css";
 
 export interface Props {
@@ -12,11 +15,8 @@ const { title } = Astro.props;
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <a href="/" class="group inline-flex items-center gap-3">
-        <span class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-white/5 ring-1 ring-white/10">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#ed3b26] group-hover:text-[#f24b38] transition-colors">
-            <path d="M12 3L3 21h18L12 3z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            <path d="M12 9v6m0 0l-3-3m3 3l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-md  ring-1 ring-white/10">
+            <Image src={dojoLogo} alt="Samourai Dojo Logo" width="30" height="30" />
         </span>
         <span class="text-sm font-semibold tracking-wide text-zinc-100">
           {title}
@@ -24,26 +24,28 @@ const { title } = Astro.props;
       </a>
       <nav class="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
         <a class="hover:text-zinc-100 transition-colors" href="/docs">Docs</a>
-        <a class="hover:text-zinc-100 transition-colors" href="/docs/install/install-dojo">Install Dojo</a>
-        <a class="hover:text-zinc-100 transition-colors" href="/docs/usage/personal-block-explorer">Usage</a>
+        <a class="hover:text-zinc-100 transition-colors" href="/install/install-dojo">Install Dojo</a>
+        <a class="hover:text-zinc-100 transition-colors" href="/usage/personal-block-explorer">Usage</a>
         <a class="hover:text-zinc-100 transition-colors" href="https://github.com/Samourai-Wallet/dojo" target="_blank" rel="noreferrer">Dojo Repo</a>
         <a class="hover:text-zinc-100 transition-colors" href="https://github.com/Samourai-Wallet" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
       <div class="flex items-center gap-3">
-        <a
-          href="/docs/install/install-dojo"
-          class="inline-flex items-center rounded-md bg-[#ed3b26] px-3 py-2 text-sm font-semibold text-[#0b0b0c] shadow-sm ring-1 ring-inset ring-[#ed3b26]/60 hover:bg-[#f24b38] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ff9a8f]"
+        <Button
+          href="/install/install-dojo"
+          type="primary"
+          size="sm"
         >
           Get Started
-        </a>
-        <a
+        </Button>
+        <Button
           href="https://github.com/Samourai-Wallet/dojo"
           target="_blank"
           rel="noreferrer"
-          class="hidden md:inline-flex items-center rounded-md bg-white/5 px-3 py-2 text-sm font-semibold text-zinc-200 ring-1 ring-inset ring-white/10 hover:bg-white/10"
+          type="secondary"
+          size="sm"
         >
           View on GitHub
-        </a>
+        </Button>
       </div>
     </div>
   </div>

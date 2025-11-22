@@ -1,5 +1,6 @@
 ---
 import "../../styles/global.css";
+import Button from "./Button.astro";
 ---
 <!-- Call to Action -->
 <section class="border-t border-white/5 bg-gradient-to-b from-[#0c0c0d] to-[#0a0a0b]">
@@ -11,8 +12,8 @@ import "../../styles/global.css";
           <p class="mt-2 text-zinc-300">Follow the install guide and connect Samourai Wallet to your own backend.</p>
         </div>
         <div class="flex flex-col gap-3 sm:flex-row">
-          <a href="/docs/install/install-dojo" class="inline-flex items-center justify-center rounded-md bg-[#ed3b26] px-5 py-3 text-sm font-semibold text-[#0b0b0c] ring-1 ring-inset ring-[#ed3b26]/60 hover:bg-[#f24b38]">Install guide</a>
-          <a href="/docs/usage/personal-block-explorer" class="inline-flex items-center justify-center rounded-md bg-white/5 px-5 py-3 text-sm font-semibold text-zinc-200 ring-1 ring-inset ring-white/10 hover:bg-white/10">Usage docs</a>
+          <Button href="/install/install-dojo" type="primary">Install guide</Button>
+          <Button href="/usage/personal-block-explorer">Usage docs</Button>
         </div>
       </div>
     </div>

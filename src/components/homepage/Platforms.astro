@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import nodlLogo from "../../assets/homepage/nodl.svg";
+import roninDojoLogo from "../../assets/homepage/ronindojo.svg";
+import start9Logo from "../../assets/homepage/start9.svg";
+import "../../styles/global.css";
+---
+<!-- Platforms / Availability -->
+<section class="border-t border-white/5">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between gap-6">
+            <div>
+                <h3 class="text-xl font-semibold text-white sm:text-2xl">Available on popular node platforms</h3>
+                <p class="mt-2 text-sm text-zinc-400">Deploy Dojo with a maintained experience on Start9, Nodl, and
+                    RoninDojo.</p>
+            </div>
+        </div>
+
+        <!-- Decorative, subtle background glow behind logos to mirror hero style -->
+        <div aria-hidden="true" class="pointer-events-none relative">
+            <div class="absolute left-1/2 top-[-3rem] h-72 w-72 -translate-x-1/2 rounded-full bg-[#ed3b26]/10 blur-[100px]"></div>
+        </div>
+
+        <!-- Creative logo tiles (no Card component) -->
+        <div class="relative mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Start9 (made-up logo) -->
+            <a
+                    href="https://github.com/ericpp/dojo-startos"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Visit Dojo StartOS package"
+                    class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 sm:p-10 outline-none ring-0 transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#ed3b26]/40"
+            >
+                <div class="flex flex-col items-center text-center">
+                    <div class="h-32 flex items-end">
+                        <Image src={start9Logo} alt="Start9" height="128"/>
+                    </div>
+                    <h4 class="mt-5 text-lg sm:text-xl font-semibold text-zinc-100">Start9</h4>
+                    <p class="mt-2 max-w-[38ch] text-sm text-zinc-400">One‑click self‑hosting OS with a marketplace and
+                        easy updates.</p>
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#ff9a8f] transition-colors group-hover:text-[#ffb1a6]">
+            Visit site
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </span>
+                </div>
+            </a>
+
+            <!-- RoninDojo (made-up logo) -->
+            <a
+                    href="https://ronindojo.io/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Visit RoninDojo website"
+                    class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 sm:p-10 outline-none ring-0 transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#ed3b26]/40"
+            >
+                <div class="flex flex-col items-center text-center">
+                    <div class="h-32 flex items-end">
+                        <Image src={roninDojoLogo} alt="RoninDojo" height="128"/>
+                    </div>
+                    <h4 class="mt-5 text-lg sm:text-xl font-semibold text-zinc-100">RoninDojo</h4>
+                    <p class="mt-2 max-w-[38ch] text-sm text-zinc-400">Dojo‑focused platform with tailored tooling and
+                        guides.</p>
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#ff9a8f] transition-colors group-hover:text-[#ffb1a6]">
+            Visit site
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </span>
+                </div>
+            </a>
+
+            <!-- Nodl (made-up logo) -->
+            <a
+                    href="https://nodl.eu"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Visit Nodl website"
+                    class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 sm:p-10 outline-none ring-0 transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#ed3b26]/40"
+            >
+                <div class="flex flex-col items-center text-center">
+                    <div class="h-32 flex items-end">
+                        <Image src={nodlLogo} alt="Nodl" height="128"/>
+                    </div>
+                    <h4 class="mt-5 text-lg sm:text-xl font-semibold text-zinc-100">Nodl</h4>
+                    <p class="mt-2 max-w-[38ch] text-sm text-zinc-400">Dedicated hardware node with curated services and
+                        support.</p>
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#ff9a8f] transition-colors group-hover:text-[#ffb1a6]">
+            Visit site
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</section>

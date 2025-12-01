@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import dojoLogo from "../../assets/dojo.svg";
 import Button from "./Button.astro";
-import Card from "./Card.astro";
 import "../../styles/global.css";
 ---
 <!-- Hero: Refined, conservative layout with subtle depth -->
@@ -13,8 +12,8 @@ import "../../styles/global.css";
   </div>
 
   <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-    <div class="grid items-start gap-12 grid-cols-1 lg:grid-cols-2">
-        <div class="lg:col-span-2 text-center">
+    <div class="grid items-start gap-12 grid-cols-1">
+        <div class="text-center">
             <Image src={dojoLogo} alt="Samourai Dojo Logo" loading="eager" class="mx-auto h-16 w-16 md:h-32 md:w-32 lg:h-48 lg:w-48" />
             <h1 class="mt-8 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Self‑hosted Bitcoin backend
@@ -23,11 +22,12 @@ import "../../styles/global.css";
         </div>
 
       <!-- Left: headline, CTAs, quick-start block -->
-      <div>
-          <p class="mt-6 max-w-2xl text-base leading-7 text-zinc-300 sm:text-lg">
-              Dojo powers Samourai Wallet with a private, sovereign, and reliable full‑node backend. Run it at home or on your server, and pair it with advanced tools like BIP47, Auth47, and Boltzmann.
+      <div class="text-center">
+          <p class="mt-6 text-base leading-7 text-zinc-300 sm:text-lg">
+              Dojo powers Samourai Wallet &amp; Ashigaru with a private, sovereign, and reliable full‑node backend.
+              <br />Run it at home or on your server, and pair it with advanced tools like BIP47, Auth47, and Boltzmann.
           </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Button
             href="/install/install-dojo"
             type="primary"
@@ -42,57 +42,6 @@ import "../../styles/global.css";
           >
             Read the Docs
           </Button>
-        </div>
-
-      </div>
-
-      <!-- Right: clean feature cards (no rotations) -->
-      <div class="relative">
-
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <!-- Card: Private by design -->
-          <Card hoverable>
-            <div class="flex items-center gap-2 text-xs font-medium text-zinc-400">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-zinc-300">
-                <path d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7l8-4Z" stroke="currentColor" stroke-width="1.2"/>
-                <path d="M9 13l2 2 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Private by design
-            </div>
-            <div class="mt-1.5 text-sm font-semibold text-zinc-100">Keep your metadata on your node</div>
-          </Card>
-          <!-- Card: Tor access -->
-          <Card hoverable>
-            <div class="flex items-center gap-2 text-xs font-medium text-zinc-400">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-zinc-300">
-                <path d="M12 3c4.418 0 8 3.582 8 8 0 3.866-2.743 7.087-6.39 7.839-.42.086-.61-.51-.274-.76A5 5 0 0 0 10 13c0-2.761 2.239-5 5-5 .59 0 1.154.1 1.678.285C15.81 6.09 14.03 5 12 5 8.686 5 6 7.686 6 11c0 1.657.671 3.157 1.758 4.243.298.298.087.81-.33.75C5.2 15.64 4 13.45 4 11c0-4.418 3.582-8 8-8Z" stroke="currentColor" stroke-width="1.2"/>
-              </svg>
-              Tor access
-            </div>
-            <div class="mt-1.5 text-sm font-semibold text-zinc-100">Serve wallet traffic over Tor</div>
-          </Card>
-          <!-- Card: Reliability -->
-          <Card hoverable>
-            <div class="flex items-center gap-2 text-xs font-medium text-zinc-400">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-zinc-300">
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-                <path d="M7 12h3m0 0-1.5-2M10 12l-1.5 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Reliable under load
-            </div>
-            <div class="mt-1.5 text-sm font-semibold text-zinc-100">Built for always‑on use</div>
-          </Card>
-          <!-- Card: Open source -->
-          <Card hoverable>
-            <div class="flex items-center gap-2 text-xs font-medium text-zinc-400">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-zinc-300">
-                <path d="M8 7h8M8 12h8M8 17h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-                <path d="M6 7v10M18 7v10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-              </svg>
-              Open source
-            </div>
-            <div class="mt-1.5 text-sm font-semibold text-zinc-100">GPL/AGPL licensed</div>
-          </Card>
         </div>
 
       </div>

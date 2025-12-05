@@ -2,7 +2,8 @@
 title: Download and verify Dojo
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, Code } from '@astrojs/starlight/components';
+import { DOJO_VERSION } from "../../../const";
 
 Continue copying and pasting the following commands in the terminal, then press `ENTER`.
 
@@ -14,14 +15,11 @@ Continue copying and pasting the following commands in the terminal, then press 
     ```
 
 2. Download the latest version of Dojo from GitHub over Tor
-    ```sh
-    torsocks wget -O samourai-dojo-1.27.0.zip https://github.com/Dojo-Open-Source-Project/samourai-dojo/archive/refs/tags/v1.27.0.zip
-    ```
+    <Code code={`torsocks wget -O samourai-dojo-${DOJO_VERSION}.zip https://github.com/Dojo-Open-Source-Project/samourai-dojo/archive/refs/tags/v${DOJO_VERSION}.zip`} lang="sh" />
 
 3. Download the Dojo fingerprints file and PGP signature file from GitHub over Tor
-    ```sh
-    torsocks wget https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v1.27.0/samourai-dojo-1.27.0-fingerprints.txt && torsocks wget https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v1.27.0/samourai-dojo-1.27.0-fingerprints.txt.sig
-    ```
+    <Code code={`torsocks wget https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v${DOJO_VERSION}/samourai-dojo-${DOJO_VERSION}-fingerprints.txt && torsocks wget https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v${DOJO_VERSION}/samourai-dojo-${DOJO_VERSION}-fingerprints.txt.sig`} lang="sh" />
+
 </Steps>
 
 ## Verify PGP signature
@@ -29,9 +27,7 @@ Continue copying and pasting the following commands in the terminal, then press 
 
 Verify the PGP signed fingerprints file:
 
-```sh
-  gpg --verify samourai-dojo-1.27.0-fingerprints.txt.sig
-```
+<Code code={`gpg --verify samourai-dojo-${DOJO_VERSION}-fingerprints.txt.sig`} lang="sh" />
 
 
 ### ✅ Successful result
@@ -56,26 +52,23 @@ If you observe a different result to the above, **stop immediately**. Do not con
 ## Verify SHA256 fingerprints
 
 Verify the SHA256 fingerprints of the downloaded file:
-```sh
-sha256sum --check samourai-dojo-1.27.0-fingerprints.txt --ignore-missing
-```
+
+<Code code={`sha256sum --check samourai-dojo-${DOJO_VERSION}-fingerprints.txt --ignore-missing`} lang="sh" />
 
 ### ✅ Successful result
 Successful verification is confirmed if the following is displayed on screen:
 
-```
-samourai-dojo-1.27.0.zip: OK
-```
+<Code code={`samourai-dojo-${DOJO_VERSION}.zip: OK`} />
 
 ### ❌ Unsuccessful result
 
 Unsuccessful verification might be displayed on screen:
 
-```
-samourai-dojo-1.27.0.zip: FAILED
+<Code code={`
+samourai-dojo-${DOJO_VERSION}.zip: FAILED
 sha256sum: WARNING: 1 computed checksum did NOT match
-sha256sum: samourai-dojo-1.27.0-fingerprints.txt: no file was verified
-```
+sha256sum: samourai-dojo-${DOJO_VERSION}-fingerprints.txt: no file was verified
+`} />
 
 If the hashes do not match, **stop immediately**. Do not continue following this guide. Do not install Dojo. Seek advice from a community member.
 
@@ -85,9 +78,7 @@ Continue copying and pasting the following commands in the terminal, then press 
 
 <Steps>
 1. Unzip the downloaded file
-    ```sh
-    unzip samourai-dojo-1.27.0.zip -d .
-    ```
+    <Code code={`unzip samourai-dojo-${DOJO_VERSION}.zip -d .`} lang="sh" />
 
 2. Create a directory for your Wallet Server called "dojo-app"
     ```sh
@@ -95,13 +86,9 @@ Continue copying and pasting the following commands in the terminal, then press 
     ```
 
 3. Move the unzipped files to the new "dojo-app" directory
-    ```sh
-    mv ~/samourai-dojo-1.27.0/* ~/dojo-app/
-    ```
+    <Code code={`mv ~/samourai-dojo-${DOJO_VERSION}/* ~/dojo-app/`} lang="sh" />
 
 4. Remove the files which are no longer required
-    ```sh
-    rm -r samourai-dojo-1.27.0 && rm samourai-dojo-1.27.0.zip && rm samourai-dojo-1.27.0-fingerprints.txt && rm samourai-dojo-1.27.0-fingerprints.txt.sig && rm E53AD419B242822F19E23C6D3033D463D6E544F6
-    ```
+    <Code code={`rm -r samourai-dojo-${DOJO_VERSION} && rm samourai-dojo-${DOJO_VERSION}.zip && rm samourai-dojo-${DOJO_VERSION}-fingerprints.txt && rm samourai-dojo-${DOJO_VERSION}-fingerprints.txt.sig && rm E53AD419B242822F19E23C6D3033D463D6E544F6`} lang="sh" />
 </Steps>
 

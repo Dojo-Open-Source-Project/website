@@ -11,7 +11,7 @@ import starlightImageZoom from "starlight-image-zoom";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://dojo-osp.io",
+	site: "https://dojo-osp.org",
 
 	prefetch: {
 		prefetchAll: true,
@@ -28,6 +28,11 @@ export default defineConfig({
 					icon: "github",
 					label: "GitHub",
 					href: "https://github.com/Dojo-Open-Source-Project/",
+				},
+				{
+					icon: "x.com",
+					label: "X",
+					href: "https://x.com/PavelTheCoder/",
 				},
 			],
 			sidebar: [

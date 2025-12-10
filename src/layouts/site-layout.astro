@@ -1,0 +1,59 @@
+---
+// Standalone Astro page (full document) for Dojo Open-Source Software
+// This page deliberately does NOT inherit from Starlight templates/layouts.
+// Styling is done entirely with Tailwind CSS utility classes.
+import "../styles/global.css";
+import DecorativeBackground from "../components/homepage/DecorativeBackground.astro";
+import Footer from "../components/homepage/Footer.astro";
+import Header from "../components/homepage/Header.astro";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const RssURL = new URL("/releases/rss.xml", Astro.site);
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+const { title, description } = Astro.props;
+
+const siteName = "Dojo Open Source Project";
+const defaultDescription =
+	"Dojo Open‑Source Software — Home of Samourai Dojo and privacy‑preserving Bitcoin tooling including BIP47, Auth47, Boltzmann, and One‑Dollar‑Fee‑Estimator.";
+
+const pageTitle = title ? `${title} · ${siteName}` : siteName;
+const pageDescription = description || defaultDescription;
+---
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta
+            name="description"
+            content={pageDescription}
+    />
+    <meta property="og:title" content={pageTitle} />
+    <meta
+            property="og:description"
+            content={pageDescription}
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0b0b0c" />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml"/>
+    <link href={RssURL} rel="alternate" title="Releases" type="application/rss+xml"/>
+</head>
+<body class="bg-[#0b0b0c] text-zinc-100 antialiased selection:bg-[#ed3b26]/40 selection:text-white">
+<DecorativeBackground />
+<Header title={siteName} />
+
+<main>
+    <slot />
+</main>
+<Footer title={siteName} />
+</body>
+
+</html>

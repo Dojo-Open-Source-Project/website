@@ -1,45 +1,13 @@
 ---
-// Standalone Astro page (full document) for Dojo Open-Source Software
-// This page deliberately does NOT inherit from Starlight templates/layouts.
-// Styling is done entirely with Tailwind CSS utility classes.
-import "../styles/global.css";
 import CallToAction from "../components/homepage/CallToAction.astro";
-import DecorativeBackground from "../components/homepage/DecorativeBackground.astro";
-import Footer from "../components/homepage/Footer.astro";
-import Header from "../components/homepage/Header.astro";
 import Hero from "../components/homepage/Hero.astro";
 import Platforms from "../components/homepage/Platforms.astro";
 import SecondaryProjects from "../components/homepage/SecondaryProjects.astro";
 import ValueProposition from "../components/homepage/ValueProposition.astro";
 
-const title = "Dojo Open Source Project";
-const description =
-	"Dojo Open‑Source Software — Home of Samourai Dojo and privacy‑preserving Bitcoin tooling including BIP47, Auth47, Boltzmann, and One‑Dollar‑Fee‑Estimator.";
+import SiteLayout from "../layouts/site-layout.astro";
 ---
-<!doctype html>
-<html lang="en" class="h-full">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dojo Open‑Source Software · Samourai Dojo</title>
-    <meta
-      name="description"
-      content={description}
-    />
-    <meta property="og:title" content={title} />
-    <meta
-      property="og:description"
-      content={description}
-    />
-    <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#0b0b0c" />
-    <link rel="icon" href="/favicon.svg" />
-  </head>
-  <body class="bg-[#0b0b0c] text-zinc-100 antialiased selection:bg-[#ed3b26]/40 selection:text-white">
-    <DecorativeBackground />
-    <Header title={title} />
-
-    <main>
+<SiteLayout>
       <Hero />
 
       <ValueProposition />
@@ -49,8 +17,4 @@ const description =
       <SecondaryProjects />
 
       <CallToAction />
-    </main>
-    <Footer title={title} />
-  </body>
-
-</html>
+</SiteLayout>

@@ -31,7 +31,7 @@ export default defineConfig({
 				},
 				{
 					icon: "x.com",
-					label: "X",
+					label: "X.com",
 					href: "https://x.com/PavelTheCoder/",
 				},
 			],
@@ -92,6 +92,7 @@ export default defineConfig({
 				starlightBlog({
 					title: "Releases",
 					postCount: 5,
+					recentPostCount: 5,
 					prefix: "releases",
 				}),
 				starlightImageZoom(),

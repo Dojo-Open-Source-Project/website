@@ -87,6 +87,11 @@ export default defineConfig({
 						{ label: "Updating Dojo", slug: "usage/updating-dojo" },
 					],
 				},
+				{
+					label: "API Docs",
+					collapsed: true,
+					autogenerate: { directory: "api" },
+				},
 			],
 			plugins: [
 				starlightBlog({

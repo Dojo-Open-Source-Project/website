@@ -1,18 +1,29 @@
 ---
 import "../../styles/global.css";
+import type { HTMLAttributes } from "astro/types";
 
-interface Props {
-	href: string;
-	type?: "primary" | "secondary";
-	size?: "sm" | "md";
-	class?: string;
-	target?: (typeof HTMLAnchorElement)["prototype"]["target"];
-	rel?: (typeof HTMLAnchorElement)["prototype"]["rel"];
-}
+type ButtonType = "primary" | "secondary";
+type Size = "sm" | "md";
 
-const { href, type, target, rel } = Astro.props;
+type ButtonProps = HTMLAttributes<"button"> & {
+	as?: "button";
+	type?: ButtonType;
+	size?: Size;
+};
 
-const sizeClasses = Astro.props.size === "sm" ? "px-3 py-2" : "px-5 py-3";
+type AnchorProps = HTMLAttributes<"a"> & {
+	as: "a";
+	type?: ButtonType;
+	size?: Size;
+};
+
+type Props = ButtonProps | AnchorProps;
+
+const { as = "button", class: className, size, type, ...props } = Astro.props;
+
+const Element = as;
+
+const sizeClasses = size === "sm" ? "px-3 py-2" : "px-5 py-3";
 
 const baseClasses =
 	"inline-flex items-center justify-center gap-2 rounded-md text-sm font-semibold shadow-sm ring-1 ring-inset transition-colors";
@@ -21,10 +32,8 @@ const typeClasses =
 	type === "primary"
 		? "bg-[#ed3b26] text-[#0b0b0c] ring-[#ed3b26]/60 hover:bg-[#f24b38]"
 		: "bg-white/5 text-zinc-200 ring-white/10 hover:bg-white/10";
-
-const additionalClasses = Astro.props.class;
 ---
 
-<a href={href} target={target} rel={rel} class:list={[baseClasses, sizeClasses, typeClasses, additionalClasses]}>
+<Element class:list={[baseClasses, sizeClasses, typeClasses, className]} {...props}>
     <slot />
-</a>
+</Element>

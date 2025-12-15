@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import dojoLogo from "../../assets/dojo.svg";
+import DojoLogo from "../../assets/dojo.svg";
 import "../../styles/global.css";
 
 export interface Props {
@@ -15,7 +14,7 @@ const { title } = Astro.props;
       <div>
         <a href="/" class="inline-flex items-center gap-2">
           <span class="inline-flex h-8 w-8 items-center justify-center rounded-md ring-1 ring-white/10">
-            <Image src={dojoLogo} alt="Samourai Dojo Logo" width="26" height="26" />
+            <DojoLogo width="26" height="26" />
           </span>
           <span class="text-sm font-semibold text-zinc-200">{title}</span>
         </a>

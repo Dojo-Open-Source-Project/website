@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import dojoLogo from "../../assets/dojo.svg";
+import DojoLogo from "../../assets/dojo.svg";
 import Button from "./Button.astro";
 import "../../styles/global.css";
 ---
@@ -14,10 +13,10 @@ import "../../styles/global.css";
   <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
     <div class="grid items-start gap-12 grid-cols-1">
         <div class="text-center">
-            <Image src={dojoLogo} alt="Samourai Dojo Logo" loading="eager" class="mx-auto h-16 w-16 md:h-32 md:w-32 lg:h-48 lg:w-48" />
+            <DojoLogo class="mx-auto h-16 w-16 md:h-32 md:w-32 lg:h-48 lg:w-48" />
             <h1 class="mt-8 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Self‑hosted Bitcoin backend
-                <span class="block bg-gradient-to-r from-[#ffb1a6] via-[#ff9a8f] to-[#ed3b26] bg-clip-text text-transparent">engineered for privacy</span>
+                <span class="block bg-linear-to-r from-[#ffb1a6] via-[#ff9a8f] to-[#ed3b26] bg-clip-text text-transparent">engineered for privacy</span>
             </h1>
         </div>
 

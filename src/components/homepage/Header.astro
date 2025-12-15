@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import dojoLogo from "../../assets/dojo.svg";
+import DojoLogo from "../../assets/dojo.svg";
 import Button from "./Button.astro";
 import "../../styles/global.css";
 
@@ -64,7 +63,7 @@ const { title } = Astro.props;
     <div class="flex h-16 items-center justify-between">
       <a href="/" class="group inline-flex items-center gap-3">
         <span class="inline-flex h-9 w-9 items-center justify-center rounded-md  ring-1 ring-white/10">
-            <Image src={dojoLogo} alt="Samourai Dojo Logo" width="30" height="30" loading="eager" />
+            <DojoLogo width="30" height="30" />
         </span>
         <span class="text-sm font-semibold tracking-wide text-zinc-100">
           {title}

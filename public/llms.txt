@@ -1,0 +1,80 @@
+# Dojo
+
+> Dojo is a self-hosted Bitcoin backend engineered for privacy. It powers Samourai Wallet and Ashigaru with a private, sovereign, and reliable full-node backend.
+
+Dojo is an open-source, self-hosted backend that puts privacy and sovereignty first. It bundles Bitcoin Core, Electrum Server, BTC-RPC Explorer, and Tor networking to keep your financial metadata off the surveillance web. Run it at home or on your server, and take advantage of advanced tools like BIP47, Auth47, and Boltzmann.
+
+Key features:
+- **Bitcoin Core**: Run your own full node and verify every block and transaction yourself—no third-party trust. Dojo ships with a tuned Core configuration for reliable, long-running operation.
+- **Electrum Server**: Local address indexing for fast wallet sync and history. All wallet lookups hit your server only—keeping XPUBs and addresses off remote services.
+- **BTC-RPC Explorer**: A lightweight block explorer served from your node. Browse blocks, transactions, and the mempool without leaking metadata to public sites.
+- **Tor Networking**: All services are reachable as Tor onion services by default. Keep your IP hidden and access Dojo privately from anywhere.
+
+## Installation
+
+- [Install Requirements](/install/requirements): Hardware and software requirements to run Dojo
+- [Install Dependencies](/install/install-dependencies): Install Docker and other dependencies
+- [Download and Verify](/install/download-and-verify): Download Dojo and verify PGP signatures
+- [Configure Dojo](/install/configure-dojo): Configure Dojo settings before installation
+- [Install Dojo](/install/install-dojo): Complete the Dojo installation process
+- [Monitoring Syncing Status](/install/monitoring-syncing-status): Monitor blockchain sync progress
+- [Segregated User](/install/segregated-user): Set up a dedicated user for Dojo
+
+## Usage
+
+- [Dojo Maintenance Tool](/usage/dojo-maintenance-tool): Manage your Dojo installation
+- [Updating Dojo](/usage/updating-dojo): Update Dojo to the latest version
+- [Personal Block Explorer](/usage/personal-block-explorer): Use BTC-RPC Explorer with your Dojo
+- [View and Edit Config Files](/usage/view-edit-config-files): Manage Dojo configuration
+- [Common Terminal Commands](/usage/common-terminal-commands): Useful commands for Dojo management
+- [Healthy Logs](/usage/healthy-logs): Understand Dojo log output
+- [General Usage Practice](/usage/general-usage-practice): Best practices for running Dojo
+
+## API Reference
+
+- [POST /auth/login](/api/POST_auth_login): Authenticate and obtain access token
+- [POST /auth/refresh](/api/POST_auth_refresh): Refresh authentication token
+- [GET /wallet](/api/GET_wallet): Get wallet information
+- [GET /xpub](/api/GET_xpub): Get xpub information
+- [POST /xpub](/api/POST_xpub): Register an xpub
+- [DELETE /xpub](/api/DELETE_xpub): Remove an xpub
+- [POST /xpub/lock](/api/POST_xpub_lock): Lock an xpub
+- [GET /xpub/import/status](/api/GET_xpub_import_status): Check xpub import status
+- [GET /multiaddr](/api/GET_multiaddr): Get multiple address information
+- [GET /unspent](/api/GET_unspent): Get unspent transaction outputs
+- [GET /txs](/api/GET_txs): Get transactions
+- [GET /tx](/api/GET_tx): Get transaction details
+- [GET /tx/hex](/api/GET_tx_hex): Get raw transaction hex
+- [GET /txout](/api/GET_txout): Get transaction output
+- [GET /seen](/api/GET_seen): Check if address has been seen
+- [POST /pushtx](/api/POST_pushtx): Broadcast a transaction
+- [POST /pushtx/schedule](/api/POST_pushtx_schedule): Schedule a transaction broadcast
+- [GET /fees](/api/GET_fees): Get current fee estimates
+- [GET /fees/estimator](/api/GET_fees_estimator): Get detailed fee estimation
+- [GET /header](/api/GET_header): Get block header
+- [GET /latest-block](/api/GET_latest_block): Get latest block information
+- [GET /support/services](/api/GET_support_services): Get supported services
+
+## Supporting Libraries
+
+- [BIP47](https://github.com/Dojo-Open-Source-Project/bip47): Reusable payment codes for private address exchange
+- [Auth47](https://github.com/Dojo-Open-Source-Project/auth47): Authentication scheme leveraging BIP47 identities
+- [Boltzmann](https://github.com/Dojo-Open-Source-Project/boltzmann): Privacy analysis tooling for transaction entropy
+- [One Dollar Fee Estimator](https://github.com/Dojo-Open-Source-Project/one-dollar-fee-estimator): Heuristic fee estimator aligned with Samourai's UX
+
+## Platforms
+
+Dojo is available on popular node platforms:
+- [Start9](https://github.com/ericpp/dojo-startos): One-click self-hosting OS with a marketplace and easy updates
+- [RoninDojo](https://ronindojo.io/): Dojo-focused platform with tailored tooling and guides
+- [Nodl](https://nodl.eu): Dedicated hardware node with curated services and support
+
+## Releases
+
+- [Latest Releases](/releases): View all Dojo releases and changelogs
+
+## Other
+
+- [PGP Keys](/pgp): Verify Dojo releases with PGP signatures
+- [Donate](/donate): Support Dojo development
+- [Warrant Canary](/canary): Transparency statement

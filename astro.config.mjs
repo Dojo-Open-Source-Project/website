@@ -24,6 +24,11 @@ export default defineConfig({
 			},
 			social: [
 				{
+					icon: "telegram",
+					label: "Telegram",
+					href: "https://t.me/samourai_dojo",
+				},
+				{
 					icon: "github",
 					label: "GitHub",
 					href: "https://github.com/Dojo-Open-Source-Project/",

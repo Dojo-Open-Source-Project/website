@@ -12,8 +12,6 @@ import starlightImageZoom from "starlight-image-zoom";
 export default defineConfig({
 	site: "https://dojo-osp.org",
 
-	security: { csp: true },
-
 	fonts: [
 		{
 			provider: fontProviders.fontsource(),

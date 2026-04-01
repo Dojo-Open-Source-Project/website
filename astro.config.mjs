@@ -4,13 +4,30 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import starlightBlog from "starlight-blog";
 import starlightImageZoom from "starlight-image-zoom";
 
 // https://astro.build/config
 export default defineConfig({
 	site: "https://dojo-osp.org",
+
+	security: { csp: true },
+
+	fonts: [
+		{
+			provider: fontProviders.fontsource(),
+			name: "Cabin",
+			cssVariable: "--font-cabin",
+		},
+		{
+			provider: fontProviders.fontsource(),
+			name: "Roboto Condensed",
+			cssVariable: "--font-roboto-condensed",
+			weights: [400, 500, 600, 700, 800],
+			styles: ["normal"],
+		},
+	],
 
 	prefetch: {
 		prefetchAll: true,

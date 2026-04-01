@@ -1,10 +1,8 @@
 @import "tailwindcss";
-@import "@fontsource/cabin/latin.css";
-@import "@fontsource/roboto-condensed/latin.css";
 
-@theme {
-	--font-sans: "Cabin";
-	--font-heading: "Roboto Condensed", sans-serif;
+@theme inline {
+	--font-sans: var(--font-cabin);
+	--font-heading: var(--font-roboto-condensed);
 }
 
 @layer base {

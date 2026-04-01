@@ -2,6 +2,7 @@
 // Standalone Astro page (full document) for Dojo Open-Source Software
 // This page deliberately does NOT inherit from Starlight templates/layouts.
 // Styling is done entirely with Tailwind CSS utility classes.
+import { Font } from "astro:assets";
 import "../styles/global.css";
 import DecorativeBackground from "../components/homepage/DecorativeBackground.astro";
 import Footer from "../components/homepage/Footer.astro";
@@ -42,6 +43,8 @@ const pageDescription = description || defaultDescription;
     />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#0b0b0c" />
+    <Font cssVariable="--font-cabin" />
+    <Font cssVariable="--font-roboto-condensed" />
     <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml"/>
     <link href={RssURL} rel="alternate" title="Releases" type="application/rss+xml"/>

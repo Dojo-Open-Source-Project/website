@@ -17,6 +17,7 @@ export default defineConfig({
 			provider: fontProviders.fontsource(),
 			name: "Cabin",
 			cssVariable: "--font-cabin",
+			weights: [400, 500, 600, 700, 800],
 		},
 		{
 			provider: fontProviders.fontsource(),

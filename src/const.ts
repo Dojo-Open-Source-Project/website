@@ -1,1 +1,1 @@
-export const DOJO_VERSION = "1.28.2";
+export const DOJO_VERSION = "1.29.0";

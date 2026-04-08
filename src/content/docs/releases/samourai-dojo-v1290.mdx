@@ -1,0 +1,72 @@
+---
+title: Samourai Dojo v1.29.0
+date: 2026-04-09
+excerpt: Minor release of Samourai Dojo introducing Mempool Space explorer, Addrindexrs deprecation in favor of Electrs and Bitcoin Core 30.2
+tags:
+  - Samourai Dojo
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { LinkCard } from '@astrojs/starlight/components';
+
+This update brings several changes to Samourai Dojo. Namely, the addition of Mempool Space explorer, Addrindexrs deprecation in favor of Electrs and Bitcoin Core 30.2. It also includes a number of bug fixes and minor improvements and updates.
+
+## Mempool Space block explorer
+This version adds support for Mempool Space block explorer. A user can now choose between Mempool Space and BTC-RPC Explorer as an integrated explorer for their paired wallet.
+
+To use Mempool Space, a user must reconfigure their `docker-explorer.conf` file:
+- change `EXPLORER_TYPE` to `mempool_space`
+- update `MEMPOOL_MYSQL_PASS` with a secure password
+- update `MEMPOOL_MYSQL_ROOT_PASSWORD` with a secure password
+
+<Aside type="caution">
+Please note that `MEMPOOL_MYSQL_PASS` and `MEMPOOL_MYSQL_ROOT_PASSWORD` must not change after Mempool Space is installed otherwise the database will become inaccessible.
+</Aside>
+
+After that, the user must run `./dojo.sh upgrade` for these changes to take effect.
+
+## Addrindexrs deprecated, added Electrs support
+Addrindexrs has been unmaintained for a long time and has been deprecated in favor of Electrs.
+
+Electrs is a good option for users whose hardware does not have the necessary performance to run Fulcrum while still allowing them to have access to electrum server capabilities.
+
+Users who are currently using Addrindexrs will need to update their `docker-indexer.conf` file:
+- change `INDEXER_TYPE` to `electrs`
+
+**Users who are using Fulcrum before the update do not have to perform any action.**
+
+## Minor changes and updates
+There are also minor changes and updates like lowering the high watermark for block processing to save on RAM usage, fixing host extraction for ipv6 in Knots ban script, updating Bitcoin Core to v30.2 and updating Docker images to latest stable debian versions.
+
+For a full list of changes, please refer to the changelog below.
+
+## Changelog
+- Login interface changes and style formatting [cfc0c55](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/cfc0c55)
+- Fix host extraction for ipv6 [00072d7](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/00072d7)
+- Lower high watermark for block processing in normal mode [61cf623](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/61cf623)
+- Update migration instructions for Fulcrum v2 and fix typo in file name [96de815](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/96de815)
+- Lower default min relay tx fee to 0.1 sat/vbyte [1b67f23](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/1b67f23)
+- Bump Bitcoin Core to v30.2 [2812f5b](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/2812f5b)
+- Bump docker images [973b6ab](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/973b6ab)
+- Updated dependencies [42226d0](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/42226d0)
+- Bump Fulcrum to v2.1.0 [3f48fae](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/3f48fae)
+- Added Mempool Space block explorer [51a9122](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/51a9122)
+- Deprecated addrindexrs, added electrs support [8ede6ca](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/8ede6ca)
+- Allow exposure of nginx (Dojo API) to network [e386fba](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/e386fba)
+- Updated logo [a20bed2](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/a20bed2)
+- Updated Tor to v0.4.9.6 and Snowflake to v2.13.1 [d6f7021](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/d6f7021)
+
+### Credits
+- DojoCoder
+- ottosch
+- linkinparkrulz
+
+## Update guide
+<LinkCard title="Update guide" href="/usage/updating-dojo/" />
+
+## Downloads
+- [Source code (zip)](https://github.com/Dojo-Open-Source-Project/samourai-dojo/archive/refs/tags/v1.29.0.zip)
+- [Souce code (tar.gz)](https://github.com/Dojo-Open-Source-Project/samourai-dojo/archive/refs/tags/v1.29.0.tar.gz)
+- [Fingerprints](https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v1.29.0/samourai-dojo-1.29.0-fingerprints.txt)
+- [Signature](https://github.com/Dojo-Open-Source-Project/samourai-dojo/releases/download/v1.29.0/samourai-dojo-1.29.0-fingerprints.txt.sig)
+

@@ -1,0 +1,139 @@
+---
+title: Performance and policy tuning
+---
+
+This guide documents additional tuning options in:
+- `docker-mysql.conf`
+- `docker-bitcoind.conf`
+- `docker-indexer.conf`
+- `docker-node.conf`
+
+All commands are to be copy and pasted into the terminal of your Dojo, then press `ENTER`.
+
+## MySQL memory profile
+Open MySQL config:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-mysql.conf
+```
+
+Default profile:
+
+```sh
+MYSQL_CONF_PROFILE=default
+```
+
+Lower-memory profile:
+
+```sh
+MYSQL_CONF_PROFILE=low_mem
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Bitcoind resource tuning
+Open bitcoind config:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-bitcoind.conf
+```
+
+These settings apply when `BITCOIND_INSTALL=on`.
+
+Useful values to tune:
+
+```sh
+BITCOIND_DB_CACHE=1024
+BITCOIND_MAX_CONNECTIONS=16
+BITCOIND_MAX_MEMPOOL=1024
+BITCOIND_RPC_THREADS=16
+BITCOIND_RPC_WORK_QUEUE=128
+BITCOIND_MEMPOOL_EXPIRY=72
+BITCOIND_MIN_RELAY_TX_FEE=0.000001
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Bitcoind behavior toggles
+In `docker-bitcoind.conf`, you can also set:
+
+```sh
+BITCOIND_LISTEN_MODE=on
+BITCOIND_PERSIST_MEMPOOL=on
+BITCOIND_BAN_KNOTS=on
+```
+
+Notes:
+- `BITCOIND_LISTEN_MODE=on` allows incoming P2P connections.
+- `BITCOIND_PERSIST_MEMPOOL=off` clears mempool on restart.
+- `BITCOIND_BAN_KNOTS=on` enables the bundled knots ban script.
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Indexer expert tuning
+Open indexer config:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-indexer.conf
+```
+
+These settings apply when `INDEXER_INSTALL=on`.
+
+Tune electrs batch behavior:
+
+```sh
+INDEXER_BATCH_SIZE=10
+INDEXER_TXID_LIMIT=501
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Fee estimation policy
+Open node config:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-node.conf
+```
+
+Choose fee type used for bitcoind fee estimation:
+
+```sh
+NODE_FEE_TYPE=ECONOMICAL
+```
+
+or:
+
+```sh
+NODE_FEE_TYPE=CONSERVATIVE
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```

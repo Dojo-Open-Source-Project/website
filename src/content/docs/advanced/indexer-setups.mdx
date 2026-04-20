@@ -1,0 +1,163 @@
+---
+title: Indexer setups
+---
+
+By default, Dojo uses `local_bitcoind` as the source for imports and rescans.
+
+This guide shows how to switch to advanced indexer setups.
+
+All commands are to be copy and pasted into the terminal of your Dojo, then press `ENTER`.
+
+## Open indexer and node config files
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-indexer.conf
+```
+
+In a second terminal tab, open:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-node.conf
+```
+
+## Use local Electrs for imports and rescans
+Set the following values in `docker-indexer.conf`:
+
+```sh
+INDEXER_INSTALL=on
+INDEXER_TYPE=electrs
+INDEXER_BATCH_SUPPORT=inactive
+```
+
+Set the following value in `docker-node.conf`:
+
+```sh
+NODE_ACTIVE_INDEXER=local_indexer
+```
+
+Electrs typically needs several hours for first indexation.
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Use local Fulcrum for imports and rescans
+Set the following values in `docker-indexer.conf`:
+
+```sh
+INDEXER_INSTALL=on
+INDEXER_TYPE=fulcrum
+INDEXER_BATCH_SUPPORT=active
+```
+
+Set the following value in `docker-node.conf`:
+
+```sh
+NODE_ACTIVE_INDEXER=local_indexer
+```
+
+Fulcrum typically needs a longer first indexation than Electrs.
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Expose local indexer API to external apps on your local machine
+This allows apps outside Docker (for example wallet software on the same computer) to connect to your internal Electrum server.
+Do not expose this API to the public internet.
+
+Set the following values in `docker-indexer.conf`:
+
+```sh
+INDEXER_INSTALL=on
+INDEXER_EXTERNAL=on
+```
+
+For Linux, keep:
+
+```sh
+INDEXER_EXTERNAL_IP=127.0.0.1
+```
+
+For macOS or Windows Docker hosts, set `INDEXER_EXTERNAL_IP` to the IP address of the Docker VM.
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+With this setting:
+- `electrs` exposes `50001` (TCP)
+- `fulcrum` exposes `50001` (TCP) and `50002` (TLS)
+
+If you are using Fulcrum and want the onion URI for your server, run:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh onion
+```
+
+## Use an external Electrum server for imports and rescans
+Only use an Electrum server you control on your own trusted local network.
+
+Set the following values in `docker-indexer.conf`:
+
+```sh
+INDEXER_INSTALL=off
+INDEXER_IP=TypeYourIndexerIPHere
+INDEXER_RPC_PORT=TypeYourIndexerPortHere
+INDEXER_PROTOCOL=tcp
+INDEXER_BATCH_SUPPORT=active
+```
+
+Set the following value in `docker-node.conf`:
+
+```sh
+NODE_ACTIVE_INDEXER=local_indexer
+```
+
+If your external server does not support batch requests, set:
+
+```sh
+INDEXER_BATCH_SUPPORT=inactive
+```
+
+If your external server requires TLS, set:
+
+```sh
+INDEXER_PROTOCOL=tls
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Use third-party explorer service (least private option)
+If needed, Dojo can use a third-party service for imports and rescans.
+
+Set the following value in `docker-node.conf`:
+
+```sh
+NODE_ACTIVE_INDEXER=third_party_explorer
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+Warning: this option can reduce privacy compared to `local_bitcoind` or `local_indexer`.

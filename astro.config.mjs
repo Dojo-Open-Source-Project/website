@@ -108,6 +108,31 @@ export default defineConfig({
 					],
 				},
 				{
+					label: "Advanced usage",
+					items: [
+						{
+							label: "Electrum server (indexer)",
+							slug: "advanced/indexer-setups",
+						},
+						{
+							label: "Bitcoind setups",
+							slug: "advanced/bitcoind-setups",
+						},
+						{
+							label: "Explorer, API, and Soroban options",
+							slug: "advanced/explorer-api-soroban-options",
+						},
+						{
+							label: "Performance and policy tuning",
+							slug: "advanced/performance-policy-tuning",
+						},
+						{
+							label: "Tor, network, and testnet",
+							slug: "advanced/tor-network-testnet",
+						},
+					],
+				},
+				{
 					label: "API Docs",
 					collapsed: true,
 					autogenerate: { directory: "api" },

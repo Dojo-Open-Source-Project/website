@@ -1,0 +1,138 @@
+---
+title: Bitcoind setups
+---
+
+By default, Dojo installs and runs bitcoind inside Docker.
+
+This guide covers advanced bitcoind configuration options available in `docker-bitcoind.conf`.
+
+All commands are to be copy and pasted into the terminal of your Dojo, then press `ENTER`.
+
+## Open bitcoind config file
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-bitcoind.conf
+```
+
+## Use an external Bitcoin full node
+If you want Dojo to use a full node outside Docker, set:
+
+```sh
+BITCOIND_INSTALL=off
+BITCOIND_IP=TypeYourBitcoindIPHere
+BITCOIND_RPC_PORT=TypeYourBitcoindRpcPortHere
+BITCOIND_RPC_USER=TypeYourBitcoindRpcUserHere
+BITCOIND_RPC_PASSWORD=TypeYourBitcoindRpcPasswordHere
+BITCOIND_ZMQ_RAWTXS=TypeYourBitcoindZmqRawTxPortHere
+BITCOIND_ZMQ_BLK_HASH=TypeYourBitcoindZmqBlockHashPortHere
+```
+
+Your external bitcoind should be configured with:
+- `server=1`
+- `txindex=1`
+- RPC enabled on a reachable IP and port
+- ZMQ rawtx and hashblock notifications enabled
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Expose bitcoind RPC and ZMQ to local apps
+By default, these ports are restricted to Dojo's internal Docker network.
+Do not expose these ports to the public internet.
+
+Set:
+
+```sh
+BITCOIND_INSTALL=on
+BITCOIND_RPC_EXTERNAL=on
+```
+
+For Linux, keep:
+
+```sh
+BITCOIND_RPC_EXTERNAL_IP=127.0.0.1
+```
+
+For macOS or Windows Docker hosts, set `BITCOIND_RPC_EXTERNAL_IP` to the IP address of the Docker VM.
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+With this setting, these local ports are exposed:
+- `28256` bitcoind RPC
+- `9500` ZMQ hash tx notifications
+- `9501` ZMQ raw tx notifications
+- `9502` ZMQ hash block notifications
+- `9503` ZMQ raw block notifications
+
+## Keep a static bitcoind onion address
+By default, Dojo rotates the bitcoind hidden service address on restart.
+
+To keep a static address, set:
+
+```sh
+BITCOIND_EPHEMERAL_HS=off
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+This setting only applies when `BITCOIND_INSTALL=on` and `BITCOIND_LISTEN_MODE=on`.
+
+## Enable bloom filters in Bitcoin Core
+To enable bloom filter support for compatible light clients, set:
+
+```sh
+BITCOIND_BLOOM_FILTERS=on
+```
+
+It is also recommended to keep a static onion address for this setup:
+
+```sh
+BITCOIND_EPHEMERAL_HS=off
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Move Bitcoin blocks to a custom directory
+This is useful when your chain data should be stored on another disk.
+
+1. Find the bitcoind UID and GID used by Dojo:
+```sh
+cd ~/dojo-app/docker/my-dojo
+grep -E '^BITCOIND_LINUX_UID=|^BITCOIND_LINUX_GID=' .env
+```
+2. Create your target directory:
+```sh
+sudo mkdir -p /external/bitcoin
+```
+3. Set ownership to the UID and GID from `.env` (defaults are usually `1105:1108`):
+```sh
+sudo chown -R 1105:1108 /external/bitcoin
+```
+4. Edit `docker-bitcoind.conf` and set:
+```sh
+BITCOIND_BLOCKS_DIR=/external/bitcoin
+```
+5. Apply changes:
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```

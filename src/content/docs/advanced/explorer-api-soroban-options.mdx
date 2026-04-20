@@ -1,0 +1,198 @@
+---
+title: Explorer, API, and Soroban options
+---
+
+This guide documents additional service-level options available in:
+- `docker-explorer.conf`
+- `docker-nginx.conf`
+- `docker-soroban.conf`
+- `docker-node.conf`
+
+All commands are to be copy and pasted into the terminal of your Dojo, then press `ENTER`.
+
+## Switch block explorer type
+Open explorer config:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-explorer.conf
+```
+
+To use BTC-RPC Explorer:
+
+```sh
+EXPLORER_INSTALL=on
+EXPLORER_TYPE=btc_rpc_explorer
+```
+
+To use mempool.space:
+
+```sh
+EXPLORER_INSTALL=on
+EXPLORER_TYPE=mempool_space
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+Note for `mempool_space`: current Dojo integration expects an Electrum endpoint reachable by `INDEXER_IP:INDEXER_RPC_PORT` over TCP.
+
+## Mempool database credentials (set once)
+When using `mempool_space`, these options are used by mempool's own database:
+
+```sh
+MEMPOOL_MYSQL_USER=mempool
+MEMPOOL_MYSQL_PASS=mempool
+MEMPOOL_MYSQL_ROOT_PASSWORD=admin
+MEMPOOL_MYSQL_DATABASE=mempool
+```
+
+Set these before first install. Do not modify them on an already running installation.
+
+## Enable or disable explorer
+To disable the explorer entirely, set:
+
+```sh
+EXPLORER_INSTALL=off
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Slow device mode (BTC-RPC Explorer only)
+This option applies only when:
+
+```sh
+EXPLORER_TYPE=btc_rpc_explorer
+```
+
+Use slower/lower-resource mode:
+
+```sh
+EXPLORER_SLOW_DEVICE_MODE=on
+```
+
+Use faster mode on stronger hardware:
+
+```sh
+EXPLORER_SLOW_DEVICE_MODE=off
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## Expose Dojo API to local network apps
+By default, Dojo API stays inside Docker and Tor.
+
+To expose nginx (Dojo API) to trusted local devices, open:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-nginx.conf
+```
+
+Set:
+
+```sh
+NGINX_EXTERNAL=on
+NGINX_EXTERNAL_IP=127.0.0.1
+NGINX_EXTERNAL_PORT=3000
+```
+
+For macOS or Windows Docker hosts, set `NGINX_EXTERNAL_IP` to the Docker VM IP instead of `127.0.0.1`.
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+Warning: do not expose this port to the public internet.
+
+## Soroban install and announce options
+Open Soroban config:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-soroban.conf
+```
+
+Disable Soroban completely:
+
+```sh
+SOROBAN_INSTALL=off
+```
+
+Keep Soroban installed but do not announce its RPC endpoint publicly:
+
+```sh
+SOROBAN_INSTALL=on
+SOROBAN_ANNOUNCE=off
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+## PandoTx behavior (requires Soroban)
+Open node config:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-node.conf
+```
+
+Disable outgoing PandoTx pushes:
+
+```sh
+NODE_PANDOTX_PUSH=off
+```
+
+Disable processing incoming PandoTx transactions:
+
+```sh
+NODE_PANDOTX_PROCESS=off
+```
+
+`NODE_PANDOTX_PROCESS` is effective only if `SOROBAN_INSTALL=on` and `SOROBAN_ANNOUNCE=on`.
+
+Choose fallback mode for push behavior:
+
+```sh
+NODE_PANDOTX_FALLBACK_MODE=secure
+```
+
+or:
+
+```sh
+NODE_PANDOTX_FALLBACK_MODE=convenient
+```
+
+Set retries for failed pushes:
+
+```sh
+NODE_PANDOTX_NB_RETRIES=2
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```

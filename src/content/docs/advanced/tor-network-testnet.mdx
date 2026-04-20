@@ -1,0 +1,73 @@
+---
+title: Tor, network, and testnet
+---
+
+This guide covers advanced Tor and Bitcoin network settings.
+
+All commands are to be copy and pasted into the terminal of your Dojo, then press `ENTER`.
+
+## Configure Tor bridges
+By default, Dojo connects to Tor without bridges.
+
+If your network blocks Tor access, you can enable Tor bridges.
+
+Open Tor config:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-tor.conf
+```
+
+Set:
+
+```sh
+TOR_USE_BRIDGES=on
+TOR_BRIDGE_TYPE=obfs4
+TOR_BRIDGE_1="TypeBridgeLine1Here"
+TOR_BRIDGE_2="TypeBridgeLine2Here"
+TOR_BRIDGE_3="TypeBridgeLine3Here"
+```
+
+You can also use:
+
+```sh
+TOR_BRIDGE_TYPE=snowflake
+```
+
+Then apply changes:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh upgrade
+```
+
+Bridge lines can be requested from:
+- https://bridges.torproject.org
+- Tor Browser bridge request flow
+
+## Install Dojo on Bitcoin testnet
+This must be configured before first installation.
+
+Open common config template:
+
+```sh
+cd ~/dojo-app/docker/my-dojo/conf/
+nano docker-common.conf.tpl
+```
+
+Set:
+
+```sh
+COMMON_BTC_NETWORK=testnet
+```
+
+Then install:
+
+```sh
+cd ~/dojo-app/docker/my-dojo
+./dojo.sh install
+```
+
+Important notes:
+- Do not change `COMMON_BTC_NETWORK` on an already running installation.
+- Switching from mainnet to testnet (or testnet to mainnet) requires a fresh install.

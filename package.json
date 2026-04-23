@@ -15,15 +15,15 @@
 		"check": "pnpm exec biome check --write src"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^5.0.3",
+		"@astrojs/mdx": "^5.0.4",
 		"@astrojs/sitemap": "3.7.2",
 		"@astrojs/starlight": "^0.38.3",
-		"@tailwindcss/vite": "^4.2.1",
-		"astro": "^6.1.5",
+		"@tailwindcss/vite": "^4.2.4",
+		"astro": "^6.1.9",
 		"sharp": "^0.34.2",
 		"starlight-blog": "^0.26.1",
 		"starlight-image-zoom": "^0.14.1",
-		"tailwindcss": "^4.2.1"
+		"tailwindcss": "^4.2.4"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.10"

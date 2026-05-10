@@ -10,8 +10,8 @@ tags:
 Reverted bitcoinjs updated that cause block sync to stall.
 
 ## Changelog
-- Updated lockfile [77ebbeeb](77ebbeeb)
-- Reverted dependency update [d5ae6ad9](d5ae6ad9)
+- Updated lockfile [77ebbeeb](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/77ebbeeb)
+- Reverted dependency update [d5ae6ad9](https://github.com/Dojo-Open-Source-Project/samourai-dojo/commit/d5ae6ad9)
 
 ## Downloads
 - [Source code (zip)](https://github.com/Dojo-Open-Source-Project/samourai-dojo/archive/refs/tags/v1.29.1.zip)

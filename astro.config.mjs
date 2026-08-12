@@ -7,6 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import starlightBlog from "starlight-blog";
 import starlightImageZoom from "starlight-image-zoom";
+import { ion } from "starlight-ion-theme";
 
 // https://astro.build/config
 export default defineConfig({
@@ -138,7 +139,8 @@ export default defineConfig({
 					autogenerate: { directory: "api" },
 				},
 			],
-			plugins: [
+      plugins: [
+        ion(),
 				starlightBlog({
 					title: "Releases",
 					postCount: 5,

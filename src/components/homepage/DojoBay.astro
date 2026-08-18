@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import dojobayLogo from "../../assets/homepage/dojobay.png";
+import dojobayOrgLogo from "../../assets/homepage/dojobay-org.png";
 import "../../styles/global.css";
 import Button from "./Button.astro";
 ---
@@ -20,19 +21,28 @@ import Button from "./Button.astro";
             Unable to run your own Samourai Dojo?
           </h3>
           <p class="mt-4 max-w-2xl text-base leading-7 text-zinc-300">
-            DojoBay exists to provide access for users who are not able to operate their own Samourai Dojo, while still
+            DojoBays exists to provide access for users who are not able to operate their own Samourai Dojo, while still
             giving them a path into the ecosystem.
           </p>
 
-          <div class="mt-8">
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button
+              as="a"
+              href="https://dojobay.org/"
+              target="_blank"
+              rel="noreferrer"
+              type="primary"
+            >
+              Visit dojobay.org
+            </Button>
             <Button
               as="a"
               href="https://dojobay.pw/"
               target="_blank"
               rel="noreferrer"
-              type="primary"
+              type="secondary"
             >
-              Visit DojoBay
+              Visit dojobay.pw
             </Button>
           </div>
         </div>
@@ -40,14 +50,25 @@ import Button from "./Button.astro";
         <div class="relative mx-auto w-full max-w-[320px] lg:max-w-[360px]">
           <div aria-hidden="true" class="absolute inset-6 rounded-full bg-[#ed3b26]/20 blur-3xl"></div>
           <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-black/30 p-4 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
-            <div class="rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-4">
-              <Image
-                src={dojobayLogo}
-                alt="DojoBay logo"
-                widths={[320, 480]}
-                sizes="(min-width: 1024px) 360px, 70vw"
-                class="mx-auto aspect-square h-auto w-full rounded-full"
-              />
+            <div class="grid grid-cols-2 gap-3">
+              <div class="rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-3">
+                <Image
+                  src={dojobayOrgLogo}
+                  alt="dojobay.org logo"
+                  widths={[160, 320]}
+                  sizes="(min-width: 1024px) 170px, 34vw"
+                  class="mx-auto aspect-square h-auto w-full rounded-full"
+                />
+              </div>
+              <div class="rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-3">
+                <Image
+                  src={dojobayLogo}
+                  alt="dojobay.pw logo"
+                  widths={[160, 320]}
+                  sizes="(min-width: 1024px) 170px, 34vw"
+                  class="mx-auto aspect-square h-auto w-full rounded-full"
+                />
+              </div>
             </div>
           </div>
 

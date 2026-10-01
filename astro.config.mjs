@@ -1,6 +1,6 @@
 // @ts-check
 
-import mdx from "@astrojs/mdx";
+import { unified } from "@astrojs/markdown-remark";
 import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
@@ -31,6 +31,10 @@ export default defineConfig({
 
 	prefetch: {
 		prefetchAll: true,
+	},
+
+	markdown: {
+		processor: unified(),
 	},
 
 	integrations: [
@@ -136,11 +140,11 @@ export default defineConfig({
 				{
 					label: "API Docs",
 					collapsed: true,
-					autogenerate: { directory: "api" },
+					items: [{ autogenerate: { directory: "api", collapsed: true } }],
 				},
 			],
-      plugins: [
-        ion(),
+			plugins: [
+				ion(),
 				starlightBlog({
 					title: "Releases",
 					postCount: 5,
@@ -150,7 +154,6 @@ export default defineConfig({
 				starlightImageZoom(),
 			],
 		}),
-		mdx(),
 		sitemap(),
 	],
 
